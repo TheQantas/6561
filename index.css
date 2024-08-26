@@ -189,9 +189,8 @@ html {
 }
 
 #dpad {
-    height: 150px;
-    width: 150px;
-    background-color: limegreen;
+    height: 240px;
+    width: 240px;
     margin: 20px 0;
     position: relative;
     background-color: var(--bkgd-2);
@@ -201,9 +200,8 @@ html {
     display: none;
 }
 #dpad > button {
-    background-color: orchid;
-    height: 50px;
-    width: 50px;
+    height: 80px;
+    width: 80px;
     border: none;
     position: absolute;
     background-color: var(--bkgd-3);
