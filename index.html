@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="index.js"></script>
+
+    <title>6561</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <div id="score-cont">
+            Score: <span id="score">0</span>
+            <div class="message" id="you-lost" style="display: none;">
+                <h1>You Lost!</h1>
+                <button class="msg-btn" onclick="restart()">Restart</button>
+            </div>
+            <div class="message" id="you-won" style="display: none;">
+                <h1>You Won!</h1>
+                <button class="msg-btn" onclick="this.parentElement.style.display='none'">Continue</button>
+                <button class="msg-btn" onclick="restart()">Restart</button>
+            </div>
+        </div>
+        <div id="box"></div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="times-three" style="display: none;">
+        <g transform="translate(2 12)">
+            <path d="M11,3H13V10.27L19.29,6.64L20.29,8.37L14,12L20.3,15.64L19.3,17.37L13,13.72V21H11V13.73L4.69,17.36L3.69,15.63L10,12L3.72,8.36L4.72,6.63L11,10.26V3Z" />
+        </g>
+        <text x="34" y="35" text-anchor="middle" font-size="36">3</text>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="divide-three" style="display: none;">
+        <g transform="translate(2 12)">
+            <path d="M19,13H5V11H19V13M12,5A2,2 0 0,1 14,7A2,2 0 0,1 12,9A2,2 0 0,1 10,7A2,2 0 0,1 12,5M12,15A2,2 0 0,1 14,17A2,2 0 0,1 12,19A2,2 0 0,1 10,17A2,2 0 0,1 12,15Z" />
+        </g>
+        <text x="34" y="35" text-anchor="middle" font-size="36">3</text>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="bomb" style="display: none;">
+        <g transform="translate(-1 1)">
+            <path d="M11.25,6A3.25,3.25 0 0,1 14.5,2.75A3.25,3.25 0 0,1 17.75,6C17.75,6.42 18.08,6.75 18.5,6.75C18.92,6.75 19.25,6.42 19.25,6V5.25H20.75V6A2.25,2.25 0 0,1 18.5,8.25A2.25,2.25 0 0,1 16.25,6A1.75,1.75 0 0,0 14.5,4.25A1.75,1.75 0 0,0 12.75,6H14V7.29C16.89,8.15 19,10.83 19,14A7,7 0 0,1 12,21A7,7 0 0,1 5,14C5,10.83 7.11,8.15 10,7.29V6H11.25M22,6H24V7H22V6M19,4V2H20V4H19M20.91,4.38L22.33,2.96L23.04,3.67L21.62,5.09L20.91,4.38Z" />
+        </g>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="nuke" style="display: none;">
+        <g transform="translate(2.5 1.5) scale(0.9)">
+            <path d="M14.04,12H10V11H5.5A3.5,3.5 0 0,1 2,7.5A3.5,3.5 0 0,1 5.5,4C6.53,4 7.45,4.44 8.09,5.15C8.5,3.35 10.08,2 12,2C13.92,2 15.5,3.35 15.91,5.15C16.55,4.44 17.47,4 18.5,4A3.5,3.5 0 0,1 22,7.5A3.5,3.5 0 0,1 18.5,11H14.04V12M10,16.9V15.76H5V13.76H19V15.76H14.04V16.92L20,19.08C20.58,19.29 21,19.84 21,20.5A1.5,1.5 0 0,1 19.5,22H4.5A1.5,1.5 0 0,1 3,20.5C3,19.84 3.42,19.29 4,19.08L10,16.9Z" />
+        </g>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="wildcard" style="display: none;">
+        <path d="M12,2L1,21H23M12,6L19.53,19H4.47" />
+        <g transform="scale(0.5) translate(12 17)">
+            <path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </g>
+    </svg>
+</body>
+
+</html>

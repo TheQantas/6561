@@ -1,0 +1,186 @@
+:root {
+    --bkgd: hsl(0,0%,97%);
+    --bkgd-2: hsl(0,0%,88%);
+    --bkgd-2-frost: hsla(0,0%,88%,0.8);
+    --bkgd-3: hsl(0,0%,80%);
+
+    --text: black;
+    --text-2: hsl(0,0%,10%);
+
+    --theme-1: hsl(0,0%,50%);
+    --theme-3: hsl(100,70%,40%);
+    --theme-9: hsl(160,70%,45%);
+    --theme-27: hsl(200,70%,50%);
+    --theme-81: hsl(230,70%,55%);
+    --theme-243: hsl(260,70%,55%);
+    --theme-729: hsl(290,70%,55%);
+    --theme-2187: hsl(350,70%,55%);
+    --theme-big: hsl(50,90%,50%);
+
+    --transition: 100ms;
+
+    font-family: "New Amsterdam", sans-serif;
+
+    --spacing: 10px;
+    --length: 90px;
+    --full-width: calc(var(--spacing) * 6 + var(--length) * 5);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bkgd: hsl(0,0%,3%);
+        --bkgd-2: hsl(0,0%,12%);
+        --bkgd-2-frost: hsla(0,0%,12%,0.8);
+        --bkgd-3: hsl(0,0%,20%);
+
+        --text: white;
+        --text-2: hsl(0,0%,90%);
+    }
+}
+@media screen and (max-width: 1000px) {
+    :root {
+        --spacing: 8px;
+        --length: 80px;
+    }
+    html {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 700px) {
+    :root {
+        --spacing: 5px;
+        --length: 70px;
+    }
+    html {
+        font-size: 10px;
+    }
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-color: var(--bkgd);
+}
+html {
+    font-size: 16px;
+}
+
+#score-cont {
+    width: var(--full-width);
+    padding: 5px 0;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--text);
+    background-color: var(--bkgd-2);
+    border: 2px solid var(--bkgd-3);
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    position: relative;
+}
+.message {
+    height: 551px;
+    width: var(--full-width);
+    background-color: var(--bkgd-2-frost);
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    border-radius: 10px;
+}
+.msg-btn {
+    border: 2px solid currentColor;
+    border-radius: 5px;
+    background: none;
+    transition: calc(var(--transition) * 2);
+    font-size: 1.5rem;
+    padding: 3px;
+    min-width: 150px;
+    color: var(--text);
+}
+.msg-btn:hover {
+    background-color: var(--text);
+    border-color: var(--text);
+    color: var(--bkgd);
+    cursor: pointer;
+}
+
+#box {
+    height: var(--full-width);
+    width: var(--full-width);
+    background-color: var(--bkgd-2);
+    border: 2px solid var(--bkgd-3);
+    position: relative;
+    border-radius: 0 0 10px  10px;
+}
+#box > * {
+    pointer-events: none;
+}
+.placeholder, .cell {
+    height: var(--length);
+    width: var(--length);
+    background-color: var(--bkgd-3);
+    position: absolute;
+    border-radius: 5px;
+}
+.cell {
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+.cell > svg {
+    height: 100%;
+    width: 100%;
+    fill: white;
+}
+.cell.value-1 { background-color: var(--theme-1); }
+.cell.value-3 { background-color: var(--theme-3); }
+.cell.value-9 { background-color: var(--theme-9); }
+.cell.value-27 { background-color: var(--theme-27); }
+.cell.value-81 { background-color: var(--theme-81); }
+.cell.value-243 { background-color: var(--theme-243); }
+.cell.value-729 { background-color: var(--theme-729); }
+.cell.value-2187 { background-color: var(--theme-2187); }
+.cell.value-big {
+    background-color: var(--theme-big);
+    font-size: 36px;
+}
+.cell.nuke {
+    background-image: radial-gradient(var(--theme-2187),var(--theme-big));
+}
+.cell.bomb {
+    background-image: radial-gradient(var(--theme-729),var(--theme-2187));
+}
+.cell.divide-three {
+    background-image: radial-gradient(var(--theme-3),var(--theme-9));
+}
+.cell.times-three {
+    background-image: radial-gradient(var(--theme-27),var(--theme-81));
+}
+.cell.wildcard {
+    background-image: radial-gradient(var(--theme-243),var(--theme-729));
+}
+
+.cell.created {
+    animation: created calc(var(--transition) * 3);
+}
+@keyframes created {
+    from {
+        transform: translate(-5px,-5px);
+        height: 100px;
+        width: 100px;
+    }
+    to {
+        transform: translate(0,0);
+        height: 90px;
+        width: 90px;
+    }
+}
