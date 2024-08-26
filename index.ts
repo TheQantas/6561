@@ -407,7 +407,7 @@ function move(dx: Direction,dy: Direction) {
     }
 
     if (isGameOver) {
-        document.getElementById('you-lost')!.style.display = 'block';
+        document.getElementById('you-lost')!.style.display = 'flex';
     }
 
     document.getElementById('score')!.textContent = score.toFixed();
@@ -415,7 +415,7 @@ function move(dx: Direction,dy: Direction) {
     if (!hasWon) {
         const won = field.some(e => e.some(e => e?.value == 6561));
         if (won) {
-            document.getElementById('you-won')!.style.display = 'block';
+            document.getElementById('you-won')!.style.display = 'flex';
         }
     }
 }
