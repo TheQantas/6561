@@ -55,6 +55,13 @@
     }
 }
 
+@media (pointer: coarse) and (hover: none) {
+    /* Styles for touchscreen devices */
+    body {
+        background-color: lightgreen;
+    }
+}
+
 body {
     min-height: 100vh;
     min-width: 100%;
