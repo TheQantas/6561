@@ -75,8 +75,6 @@ function tripleOrDivide(cell, fallback, doTriple) {
     return numericValue;
 }
 function updatePosition(cell, row, col) {
-    // cell.div.style.left = ((col+1)*PADDING + col*LENGTH) + 'px';
-    // cell.div.style.top = ((row+1)*PADDING + row*LENGTH) + 'px';
     cell.div.style.top = "calc(var(--spacing) * (".concat(row + 1, ") + var(--length) * ").concat(row, ")");
     cell.div.style.left = "calc(var(--spacing) * (".concat(col + 1, ") + var(--length) * ").concat(col, ")");
 }
@@ -210,16 +208,12 @@ var box;
 var score = 0;
 var hasWon = false;
 var SIZE = 5;
-// const PADDING = 10;
-// const LENGTH = 90;
 window.onload = function() {
     box = document.getElementById('box');
     for(var r = 0; r < SIZE; r++){
         for(var c = 0; c < SIZE; c++){
             var placeholder = document.createElement('div');
             placeholder.classList.add('placeholder');
-            // placeholder.style.left = ((c+1)*PADDING + c*LENGTH) + 'px';
-            // placeholder.style.top = ((r+1)*PADDING + r*LENGTH) + 'px';
             placeholder.style.left = "calc(var(--spacing) * (".concat(c + 1, ") + var(--length) * ").concat(c, ")");
             placeholder.style.top = "calc(var(--spacing) * (".concat(r + 1, ") + var(--length) * ").concat(r, ")");
             box.append(placeholder);
@@ -253,6 +247,7 @@ var touchStart = {
     y: 0
 };
 function swipeStart(ev) {
+    ev.preventDefault();
     var x = _instanceof(ev, TouchEvent) ? ev.targetTouches[0].clientX : ev.pageX;
     var y = _instanceof(ev, TouchEvent) ? ev.targetTouches[0].clientY : ev.pageY;
     if (!document.elementsFromPoint(x, y).includes(box)) {
@@ -262,6 +257,7 @@ function swipeStart(ev) {
     touchStart.y = y;
 }
 function swipeEnd(ev) {
+    ev.preventDefault();
     var x = _instanceof(ev, TouchEvent) ? ev.targetTouches[0].clientX : ev.pageX;
     var y = _instanceof(ev, TouchEvent) ? ev.targetTouches[0].clientY : ev.pageY;
     if (!document.elementsFromPoint(x, y).includes(box)) {
