@@ -145,7 +145,7 @@ window.onload = () => {
     if (isMobileDevice()) {
         document.getElementById('dpad')!.style.display = 'block';
     }
-    
+
     box = document.getElementById('box')!;
 
     for (let r = 0; r < SIZE; r++) {
@@ -282,6 +282,7 @@ function spawnNewTile(pos?: [number,number]): boolean {
 type Direction = 1 | 0 | -1;
 
 function move(dx: Direction,dy: Direction) {
+    alert(`moving (${dx}-${dy})`);
     const alongColumn = dy != 0;
     const nonZero = dx==0 ? dy : dx;
     const start = nonZero>0 ? 0 : SIZE - 1;

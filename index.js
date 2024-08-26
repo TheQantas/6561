@@ -416,6 +416,7 @@ function spawnNewTile(pos) {
     return allowedSpaces.length == 0;
 }
 function move(dx, dy) {
+    alert("moving (".concat(dx, "-").concat(dy, ")"));
     var alongColumn = dy != 0;
     var nonZero = dx == 0 ? dy : dx;
     var start = nonZero > 0 ? 0 : SIZE - 1;
