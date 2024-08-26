@@ -55,7 +55,7 @@
     }
 }
 
-@media (pointer: coarse) and (hover: none) {
+@media (pointer: coarse) or (hover: none) {
     /* Styles for touchscreen devices */
     body {
         background-color: lightgreen;
