@@ -84,7 +84,7 @@ html {
     position: relative;
 }
 .message {
-    height: 551px;
+    height: 100%;
     width: var(--full-width);
     background-color: var(--bkgd-2-frost);
     backdrop-filter: blur(5px);
@@ -93,6 +93,11 @@ html {
     left: 0;
     z-index: 5;
     border-radius: 10px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: var(--text);
 }
 .msg-btn {
     border: 2px solid currentColor;
@@ -103,6 +108,7 @@ html {
     padding: 3px;
     min-width: 150px;
     color: var(--text);
+    margin: 5px;
 }
 .msg-btn:hover {
     background-color: var(--text);

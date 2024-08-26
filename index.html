@@ -16,18 +16,18 @@
 </head>
 
 <body>
-    <div>
+    <div style="position: relative;">
+        <div class="message" id="you-lost" style="display: none;">
+            <h1>You Lost!</h1>
+            <button class="msg-btn" onclick="restart()">Restart</button>
+        </div>
+        <div class="message" id="you-won" style="display: none;">
+            <h1>You Won!</h1>
+            <button class="msg-btn" onclick="this.parentElement.style.display='none'">Continue</button>
+            <button class="msg-btn" onclick="restart()">Restart</button>
+        </div>
         <div id="score-cont">
             Score: <span id="score">0</span>
-            <div class="message" id="you-lost" style="display: none;">
-                <h1>You Lost!</h1>
-                <button class="msg-btn" onclick="restart()">Restart</button>
-            </div>
-            <div class="message" id="you-won" style="display: none;">
-                <h1>You Won!</h1>
-                <button class="msg-btn" onclick="this.parentElement.style.display='none'">Continue</button>
-                <button class="msg-btn" onclick="restart()">Restart</button>
-            </div>
         </div>
         <div id="box"></div>
     </div>
