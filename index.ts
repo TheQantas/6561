@@ -6,6 +6,10 @@ interface ICell {
     value: ThreeValue | PowerUp,
 }
 
+function isMobileDevice(): boolean {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 function triple(cell: ICell,fallback: ThreeValue): number {
     return tripleOrDivide(cell,fallback,true);
 }
@@ -138,6 +142,10 @@ let hasWon = false;
 const SIZE = 5;
 
 window.onload = () => {
+    if (isMobileDevice()) {
+        document.getElementById('dpad')!.style.display = 'block';
+    }
+    
     box = document.getElementById('box')!;
 
     for (let r = 0; r < SIZE; r++) {

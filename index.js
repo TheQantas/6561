@@ -51,6 +51,9 @@ function _unsupported_iterable_to_array(o, minLen) {
     if (n === "Map" || n === "Set") return Array.from(n);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o, minLen);
 }
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 function triple(cell, fallback) {
     return tripleOrDivide(cell, fallback, true);
 }
@@ -209,6 +212,9 @@ var score = 0;
 var hasWon = false;
 var SIZE = 5;
 window.onload = function() {
+    if (isMobileDevice()) {
+        document.getElementById('dpad').style.display = 'block';
+    }
     box = document.getElementById('box');
     for(var r = 0; r < SIZE; r++){
         for(var c = 0; c < SIZE; c++){

@@ -3,6 +3,7 @@
     --bkgd-2: hsl(0,0%,88%);
     --bkgd-2-frost: hsla(0,0%,88%,0.8);
     --bkgd-3: hsl(0,0%,80%);
+    --bkgd-4: hsl(0,0%,73%);
 
     --text: black;
     --text-2: hsl(0,0%,10%);
@@ -31,6 +32,7 @@
         --bkgd-2: hsl(0,0%,12%);
         --bkgd-2-frost: hsla(0,0%,12%,0.8);
         --bkgd-3: hsl(0,0%,20%);
+        --bkgd-4: hsl(0,0%,27%);
 
         --text: white;
         --text-2: hsl(0,0%,90%);
@@ -55,13 +57,6 @@
     }
 }
 
-@media (pointer: coarse) or (hover: none) {
-    /* Styles for touchscreen devices */
-    body {
-        background-color: lightgreen;
-    }
-}
-
 body {
     min-height: 100vh;
     min-width: 100%;
@@ -70,6 +65,7 @@ body {
     justify-content: center;
     margin: 0;
     background-color: var(--bkgd);
+    flex-direction: column;
 }
 html {
     font-size: 16px;
@@ -191,3 +187,28 @@ html {
         width: 90px;
     }
 }
+
+#dpad {
+    height: 150px;
+    width: 150px;
+    background-color: limegreen;
+    margin: 20px 0;
+    position: relative;
+    background-color: var(--bkgd-2);
+    border: 2px solid var(--bkgd-3);
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+#dpad > button {
+    background-color: orchid;
+    height: 50px;
+    width: 50px;
+    border: none;
+    position: absolute;
+    background-color: var(--bkgd-3);
+    border-radius: 5px;
+    fill: var(--text);
+    padding: 0;
+}
+
