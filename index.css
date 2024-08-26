@@ -177,14 +177,14 @@ html {
 }
 @keyframes created {
     from {
-        transform: translate(-5px,-5px);
-        height: 100px;
-        width: 100px;
+        transform: translate(calc(var(--spacing) * -1),calc(var(--spacing) * -1));
+        height: calc(var(--length) + var(--spacing) * 2);
+        width: calc(var(--length) + var(--spacing) * 2);
     }
     to {
         transform: translate(0,0);
-        height: 90px;
-        width: 90px;
+        height: var(--length);
+        width: var(--length);
     }
 }
 
