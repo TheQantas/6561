@@ -241,11 +241,9 @@ window.onkeydown = function(ev) {
     }
 };
 window.onmousedown = swipeStart;
-// window.ontouchstart = swipeStart;
 window.ondragstart = swipeStart;
 window.onpointerdown = swipeStart;
 window.onmouseup = swipeEnd;
-// window.ontouchend = swipeEnd;
 window.ondragend = swipeEnd;
 window.onpointerup = swipeEnd;
 var touchStart = {
@@ -416,160 +414,155 @@ function spawnNewTile(pos) {
     return allowedSpaces.length == 0;
 }
 function move(dx, dy) {
-    alert("moving (".concat(dx, "-").concat(dy, ")"));
-    try {
-        var alongColumn = dy != 0;
-        var nonZero = dx == 0 ? dy : dx;
-        var start = nonZero > 0 ? 0 : SIZE - 1;
-        var end = nonZero > 0 ? SIZE - 1 : 0;
-        for(var major = 0; major < SIZE; major++){
-            var slice = [];
-            for(var minor = start; minor * nonZero <= end * nonZero; minor += nonZero){
-                var col = alongColumn ? major : minor;
-                var row = alongColumn ? minor : major;
-                if (field[row][col] != undefined) {
-                    slice.push(field[row][col]);
-                }
+    var alongColumn = dy != 0;
+    var nonZero = dx == 0 ? dy : dx;
+    var start = nonZero > 0 ? 0 : SIZE - 1;
+    var end = nonZero > 0 ? SIZE - 1 : 0;
+    for(var major = 0; major < SIZE; major++){
+        var slice = [];
+        for(var minor = start; minor * nonZero <= end * nonZero; minor += nonZero){
+            var col = alongColumn ? major : minor;
+            var row = alongColumn ? minor : major;
+            if (field[row][col] != undefined) {
+                slice.push(field[row][col]);
             }
-            for(var i = 0; i < slice.length; i++){
-                var first = slice[i];
-                var second = slice[i + 1];
-                var third = slice[i + 2];
-                if (second != undefined && third != undefined && matches(first, second, third)) {
-                    score += triple(first, second.value);
-                    remove(slice[i + 1]);
-                    slice[i + 1] = undefined;
-                    remove(slice[i + 2]);
-                    slice[i + 2] = undefined;
-                } else if (first.value == 'nuke') {
-                    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+        }
+        for(var i = 0; i < slice.length; i++){
+            var first = slice[i];
+            var second = slice[i + 1];
+            var third = slice[i + 2];
+            if (second != undefined && third != undefined && matches(first, second, third)) {
+                score += triple(first, second.value);
+                remove(slice[i + 1]);
+                slice[i + 1] = undefined;
+                remove(slice[i + 2]);
+                slice[i + 2] = undefined;
+            } else if (first.value == 'nuke') {
+                var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+                try {
+                    for(var _iterator = slice[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                        var cell = _step.value;
+                        if (cell != undefined) {
+                            remove(cell);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally{
                     try {
-                        for(var _iterator = slice[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
-                            var cell = _step.value;
-                            if (cell != undefined) {
-                                remove(cell);
-                            }
+                        if (!_iteratorNormalCompletion && _iterator.return != null) {
+                            _iterator.return();
                         }
-                    } catch (err) {
-                        _didIteratorError = true;
-                        _iteratorError = err;
                     } finally{
-                        try {
-                            if (!_iteratorNormalCompletion && _iterator.return != null) {
-                                _iterator.return();
-                            }
-                        } finally{
-                            if (_didIteratorError) {
-                                throw _iteratorError;
-                            }
+                        if (_didIteratorError) {
+                            throw _iteratorError;
                         }
                     }
-                    slice = [];
-                    break;
-                } else if (first.value == 'bomb' && second != undefined || (second === null || second === void 0 ? void 0 : second.value) == 'bomb') {
-                    remove(slice[i]);
-                    slice[i] = undefined;
-                    remove(slice[i + 1]);
-                    slice[i + 1] = undefined;
-                    i--;
-                } else if (first.value == 'times-three' && typeof (second === null || second === void 0 ? void 0 : second.value) == 'number') {
-                    score += triple(first, second.value);
-                    remove(slice[i + 1]);
-                    slice[i + 1] = undefined;
-                } else if ((second === null || second === void 0 ? void 0 : second.value) == 'times-three' && typeof first.value == 'number') {
-                    slice[i] = second;
-                    slice[i + 1] = first;
-                    score += triple(second, first.value);
-                    remove(slice[i + 1]);
-                    slice[i + 1] = undefined;
-                } else if (first.value == 'divide-three' && typeof (second === null || second === void 0 ? void 0 : second.value) == 'number') {
-                    score += divide(first, second.value);
-                    remove(slice[i + 1]);
-                    slice[i + 1] = undefined;
-                } else if ((second === null || second === void 0 ? void 0 : second.value) == 'divide-three' && typeof first.value == 'number') {
-                    slice[i] = second;
-                    slice[i + 1] = first;
-                    score += divide(second, first.value);
-                    remove(slice[i + 1]);
-                    slice[i + 1] = undefined;
                 }
-                slice = slice.filter(function(e) {
-                    return e != undefined;
-                });
+                slice = [];
+                break;
+            } else if (first.value == 'bomb' && second != undefined || (second === null || second === void 0 ? void 0 : second.value) == 'bomb') {
+                remove(slice[i]);
+                slice[i] = undefined;
+                remove(slice[i + 1]);
+                slice[i + 1] = undefined;
+                i--;
+            } else if (first.value == 'times-three' && typeof (second === null || second === void 0 ? void 0 : second.value) == 'number') {
+                score += triple(first, second.value);
+                remove(slice[i + 1]);
+                slice[i + 1] = undefined;
+            } else if ((second === null || second === void 0 ? void 0 : second.value) == 'times-three' && typeof first.value == 'number') {
+                slice[i] = second;
+                slice[i + 1] = first;
+                score += triple(second, first.value);
+                remove(slice[i + 1]);
+                slice[i + 1] = undefined;
+            } else if (first.value == 'divide-three' && typeof (second === null || second === void 0 ? void 0 : second.value) == 'number') {
+                score += divide(first, second.value);
+                remove(slice[i + 1]);
+                slice[i + 1] = undefined;
+            } else if ((second === null || second === void 0 ? void 0 : second.value) == 'divide-three' && typeof first.value == 'number') {
+                slice[i] = second;
+                slice[i + 1] = first;
+                score += divide(second, first.value);
+                remove(slice[i + 1]);
+                slice[i + 1] = undefined;
             }
-            for(var minor1 = start, i1 = 0; minor1 * nonZero <= end * nonZero; minor1 += nonZero, i1++){
-                var col1 = alongColumn ? major : minor1;
-                var row1 = alongColumn ? minor1 : major;
-                field[row1][col1] = slice[i1];
-                if (slice[i1] != undefined) {
-                    updatePosition(slice[i1], row1, col1);
-                }
-            }
-        }
-        var isFieldFull = spawnNewTile();
-        var isGameOver = isFieldFull;
-        if (isFieldFull) {
-            outer: for(var i2 = 0; i2 < SIZE; i2++){
-                for(var r = 0; r < SIZE - 1; r++){
-                    var first1 = field[r][i2];
-                    var second1 = r + 1 < field.length ? field[r + 1][i2] : undefined;
-                    var third1 = r + 2 < field.length ? field[r + 2][i2] : undefined;
-                    if (typeof (first1 === null || first1 === void 0 ? void 0 : first1.value) == 'string' && first1.value != 'wildcard') {
-                        isGameOver = false;
-                        break outer;
-                    }
-                    if (typeof (second1 === null || second1 === void 0 ? void 0 : second1.value) == 'string' && second1.value != 'wildcard') {
-                        isGameOver = false;
-                        break outer;
-                    }
-                    if (typeof (third1 === null || third1 === void 0 ? void 0 : third1.value) == 'string' && third1.value != 'wildcard') {
-                        isGameOver = false;
-                        break outer;
-                    }
-                    if (first1 != undefined && second1 != undefined && third1 != undefined && matches(first1, second1, third1)) {
-                        isGameOver = false;
-                        break outer;
-                    }
-                }
-                for(var c = 0; c < SIZE - 1; c++){
-                    var first2 = field[i2][c];
-                    var second2 = field[i2][c + 1];
-                    var third2 = field[i2][c + 2];
-                    if (typeof (first2 === null || first2 === void 0 ? void 0 : first2.value) == 'string' && first2.value != 'wildcard') {
-                        isGameOver = false;
-                        break outer;
-                    }
-                    if (typeof (second2 === null || second2 === void 0 ? void 0 : second2.value) == 'string' && second2.value != 'wildcard') {
-                        isGameOver = false;
-                        break outer;
-                    }
-                    if (typeof (third2 === null || third2 === void 0 ? void 0 : third2.value) == 'string' && third2.value != 'wildcard') {
-                        isGameOver = false;
-                        break outer;
-                    }
-                    if (first2 != undefined && second2 != undefined && third2 != undefined && matches(first2, second2, third2)) {
-                        isGameOver = false;
-                        break outer;
-                    }
-                }
-            }
-        }
-        if (isGameOver) {
-            document.getElementById('you-lost').style.display = 'block';
-        }
-        document.getElementById('score').textContent = score.toFixed();
-        if (!hasWon) {
-            var won = field.some(function(e) {
-                return e.some(function(e) {
-                    return (e === null || e === void 0 ? void 0 : e.value) == 6561;
-                });
+            slice = slice.filter(function(e) {
+                return e != undefined;
             });
-            if (won) {
-                document.getElementById('you-won').style.display = 'block';
+        }
+        for(var minor1 = start, i1 = 0; minor1 * nonZero <= end * nonZero; minor1 += nonZero, i1++){
+            var col1 = alongColumn ? major : minor1;
+            var row1 = alongColumn ? minor1 : major;
+            field[row1][col1] = slice[i1];
+            if (slice[i1] != undefined) {
+                updatePosition(slice[i1], row1, col1);
             }
         }
-    } catch (e) {
-        alert('error: ' + JSON.stringify(e));
+    }
+    var isFieldFull = spawnNewTile();
+    var isGameOver = isFieldFull;
+    if (isFieldFull) {
+        outer: for(var i2 = 0; i2 < SIZE; i2++){
+            for(var r = 0; r < SIZE - 1; r++){
+                var first1 = field[r][i2];
+                var second1 = r + 1 < field.length ? field[r + 1][i2] : undefined;
+                var third1 = r + 2 < field.length ? field[r + 2][i2] : undefined;
+                if (typeof (first1 === null || first1 === void 0 ? void 0 : first1.value) == 'string' && first1.value != 'wildcard') {
+                    isGameOver = false;
+                    break outer;
+                }
+                if (typeof (second1 === null || second1 === void 0 ? void 0 : second1.value) == 'string' && second1.value != 'wildcard') {
+                    isGameOver = false;
+                    break outer;
+                }
+                if (typeof (third1 === null || third1 === void 0 ? void 0 : third1.value) == 'string' && third1.value != 'wildcard') {
+                    isGameOver = false;
+                    break outer;
+                }
+                if (first1 != undefined && second1 != undefined && third1 != undefined && matches(first1, second1, third1)) {
+                    isGameOver = false;
+                    break outer;
+                }
+            }
+            for(var c = 0; c < SIZE - 1; c++){
+                var first2 = field[i2][c];
+                var second2 = field[i2][c + 1];
+                var third2 = field[i2][c + 2];
+                if (typeof (first2 === null || first2 === void 0 ? void 0 : first2.value) == 'string' && first2.value != 'wildcard') {
+                    isGameOver = false;
+                    break outer;
+                }
+                if (typeof (second2 === null || second2 === void 0 ? void 0 : second2.value) == 'string' && second2.value != 'wildcard') {
+                    isGameOver = false;
+                    break outer;
+                }
+                if (typeof (third2 === null || third2 === void 0 ? void 0 : third2.value) == 'string' && third2.value != 'wildcard') {
+                    isGameOver = false;
+                    break outer;
+                }
+                if (first2 != undefined && second2 != undefined && third2 != undefined && matches(first2, second2, third2)) {
+                    isGameOver = false;
+                    break outer;
+                }
+            }
+        }
+    }
+    if (isGameOver) {
+        document.getElementById('you-lost').style.display = 'block';
+    }
+    document.getElementById('score').textContent = score.toFixed();
+    if (!hasWon) {
+        var won = field.some(function(e) {
+            return e.some(function(e) {
+                return (e === null || e === void 0 ? void 0 : e.value) == 6561;
+            });
+        });
+        if (won) {
+            document.getElementById('you-won').style.display = 'block';
+        }
     }
 }
 
