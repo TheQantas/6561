@@ -283,6 +283,8 @@ type Direction = 1 | 0 | -1;
 
 function move(dx: Direction,dy: Direction) {
     alert(`moving (${dx}-${dy})`);
+
+    try {
     const alongColumn = dy != 0;
     const nonZero = dx==0 ? dy : dx;
     const start = nonZero>0 ? 0 : SIZE - 1;
@@ -420,6 +422,9 @@ function move(dx: Direction,dy: Direction) {
         if (won) {
             document.getElementById('you-won')!.style.display = 'block';
         }
+    }
+    } catch(e) {
+        alert('error: ' + JSON.stringify(e));
     }
 }
 
