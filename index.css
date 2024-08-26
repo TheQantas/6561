@@ -22,9 +22,9 @@
 
     font-family: "New Amsterdam", sans-serif;
 
-    --spacing: 10px;
-    --length: 90px;
-    --full-width: calc(var(--spacing) * 6 + var(--length) * 5);
+    --spacing: 8px;
+    --length: 75px;
+    --full-width: calc(var(--spacing) * 7 + var(--length) * 6);
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -40,20 +40,20 @@
 }
 @media screen and (max-width: 1000px) {
     :root {
-        --spacing: 8px;
-        --length: 80px;
+        --spacing: 5px;
+        --length: 65px;
     }
     html {
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 @media screen and (max-width: 700px) {
     :root {
-        --spacing: 5px;
-        --length: 70px;
+        --spacing: 3px;
+        --length: 55px;
     }
     html {
-        font-size: 10px;
+        font-size: 8px;
     }
 }
 

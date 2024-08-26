@@ -126,20 +126,21 @@ function matches(a: ICell,b: ICell,c: ICell): boolean {
 }
 
 
-type Fiver<T> = [T,T,T,T,T];
+type Sixer<T> = [T,T,T,T,T,T];
 
-const field: Fiver<Fiver<ICell|undefined>> = [
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
+const field: Sixer<Sixer<ICell|undefined>> = [
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
 ];
 
 let box: HTMLElement | null;
 let score = 0;
 let hasWon = false;
-const SIZE = 5;
+const SIZE = 6;
 
 window.onload = () => {
     if (isMobileDevice()) {

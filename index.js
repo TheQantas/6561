@@ -176,12 +176,6 @@ var field = [
         undefined,
         undefined,
         undefined,
-        undefined
-    ],
-    [
-        undefined,
-        undefined,
-        undefined,
         undefined,
         undefined
     ],
@@ -190,6 +184,15 @@ var field = [
         undefined,
         undefined,
         undefined,
+        undefined,
+        undefined
+    ],
+    [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
         undefined
     ],
     [
@@ -197,9 +200,19 @@ var field = [
         undefined,
         undefined,
         undefined,
+        undefined,
         undefined
     ],
     [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined
+    ],
+    [
+        undefined,
         undefined,
         undefined,
         undefined,
@@ -210,7 +223,7 @@ var field = [
 var box;
 var score = 0;
 var hasWon = false;
-var SIZE = 5;
+var SIZE = 6;
 window.onload = function() {
     if (isMobileDevice()) {
         document.getElementById('dpad').style.display = 'block';
@@ -551,7 +564,7 @@ function move(dx, dy) {
         }
     }
     if (isGameOver) {
-        document.getElementById('you-lost').style.display = 'block';
+        document.getElementById('you-lost').style.display = 'flex';
     }
     document.getElementById('score').textContent = score.toFixed();
     if (!hasWon) {
@@ -561,7 +574,7 @@ function move(dx, dy) {
             });
         });
         if (won) {
-            document.getElementById('you-won').style.display = 'block';
+            document.getElementById('you-won').style.display = 'flex';
         }
     }
 }
