@@ -179,6 +179,7 @@ window.onpointerup = swipeEnd;
 
 const touchStart = {x:0,y:0};
 function swipeStart(ev: TouchEvent | MouseEvent | DragEvent | PointerEvent) {
+    ev.preventDefault();
     const x = ev instanceof TouchEvent ? ev.targetTouches[0].clientX : ev.pageX;
     const y = ev instanceof TouchEvent ? ev.targetTouches[0].clientY : ev.pageY;
     if (!document.elementsFromPoint(x,y).includes(box!)) {
@@ -188,6 +189,7 @@ function swipeStart(ev: TouchEvent | MouseEvent | DragEvent | PointerEvent) {
     touchStart.y = y;
 }
 function swipeEnd(ev: TouchEvent | MouseEvent | DragEvent | PointerEvent) {
+    ev.preventDefault();
     const x = ev instanceof TouchEvent ? ev.targetTouches[0].clientX : ev.pageX;
     const y = ev instanceof TouchEvent ? ev.targetTouches[0].clientY : ev.pageY;
     if (!document.elementsFromPoint(x,y).includes(box!)) {
