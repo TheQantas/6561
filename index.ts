@@ -176,12 +176,12 @@ window.onkeydown = ev => {
 }
 
 window.onmousedown = swipeStart;
-window.ontouchstart = swipeStart;
+// window.ontouchstart = swipeStart;
 window.ondragstart = swipeStart;
 window.onpointerdown = swipeStart;
 
 window.onmouseup = swipeEnd;
-window.ontouchend = swipeEnd;
+// window.ontouchend = swipeEnd;
 window.ondragend = swipeEnd;
 window.onpointerup = swipeEnd;
 
